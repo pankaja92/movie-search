@@ -36,16 +36,16 @@ if (cluster.isMaster) {
     res.send('{"message":"Hello from the custom server!"}');
   });
 
-  app.get("/api/search/:movie", async (req, res) => {
-    const movie = req.params.movie;
-    try {
-      const result = await moviedb.searchMovie({ query: movie });
-      movieList = result.results;
-      res.send(movieList);
-    } catch (err) {
-      console.error(err);
-    }
-  });
+  // app.get("/api/search/:movie", async (req, res) => {
+  //   const movie = req.params.movie;
+  //   try {
+  //     const result = await moviedb.searchMovie({ query: movie });
+  //     movieList = result.results;
+  //     res.send(movieList);
+  //   } catch (err) {
+  //     console.error(err);
+  //   }
+  // });
 
   app.get("/api/movie/:id", async (req, res) => {
     const id = req.params.id;
