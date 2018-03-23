@@ -1,0 +1,64 @@
+.Main {
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+  /* height: 1000px; */
+  display: inline-block;
+  /* opacity: 0.5; */
+}
+
+.MainImage {
+  width: 50%;
+}
+
+.Image {
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-top: 10px;
+}
+
+.DetailsTop {
+  padding-top: 5px;
+  padding-bottom: 20px;
+}
+
+.MainDetails {
+  margin-bottom: 20px;
+  height: 60%;
+}
+
+.Title {
+  padding-top: 15px;
+  font-size: 36px;
+  font-family: "Dosis", sans-serif;
+}
+
+.Tagline {
+  font-size: 24px;
+  text-align: left;
+  font-family: "Roboto", sans-serif;
+  color: #0d47a1;
+}
+
+.Overview {
+  text-align: left;
+  font-size: 18px;
+  font-family: "Arimo", sans-serif;
+}
+
+.Details {
+  padding-right: 40px;
+}
+
+.Other {
+  margin-top: 40px;
+}
+
+.Heading {
+  font-family: "Dosis", sans-serif;
+  font-size: 22px;
+}
+
+.Loading {
+  font-size: 42px;
+}

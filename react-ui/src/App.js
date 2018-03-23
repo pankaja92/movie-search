@@ -1,56 +1,46 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import "./App.css";
+import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
+import moviedb from "./resources/moviedb.svg";
+
+import Search from "./components/search";
+import Movie from "./components/card";
+import Copyright from "./components/credits";
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      message: null,
-      fetching: true
+      movie: {},
+      backdrop: ""
     };
   }
 
-  componentDidMount() {
-    fetch('/api')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error(`status ${response.status}`);
-        }
-        return response.json();
-      })
-      .then(json => {
-        this.setState({
-          message: json.message,
-          fetching: false
-        });
-      }).catch(e => {
-        this.setState({
-          message: `API call failed: ${e}`,
-          fetching: false
-        });
-      })
+  Selected(movie) {
+    this.setState({
+      movie,
+      backdrop: "https://image.tmdb.org/t/p/original" + movie.backdrop_path
+    });
   }
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <MuiThemeProvider>
+        <div className="App">
+          <Search SelectedMovie={this.Selected.bind(this)} />
+          <Movie MovieDetails={this.state.movie} />
+          <div>
+            <a
+              href="https://www.themoviedb.org/?language=en"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={moviedb} className="Logo" alt="moviedb logo" />
+            </a>
+          </div>
+          <Copyright />
         </div>
-        <p className="App-intro">
-          {'This is '}
-          <a href="https://github.com/mars/heroku-cra-node">
-            {'create-react-app with a custom Node/Express server'}
-          </a><br/>
-        </p>
-        <p className="App-intro">
-          {this.state.fetching
-            ? 'Fetching message from API'
-            : this.state.message}
-        </p>
-      </div>
+      </MuiThemeProvider>
     );
   }
 }
