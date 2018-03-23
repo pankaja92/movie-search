@@ -17,10 +17,6 @@
     "express": "^4.14.1",
     "moviedb-promise": "^1.2.1"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/mars/heroku-cra-node.git"
-  },
   "keywords": [
     "node",
     "heroku",
