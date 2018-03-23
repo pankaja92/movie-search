@@ -42,16 +42,16 @@ if (cluster.isMaster) {
     }
   });
 
-  // app.get("/api/search/:movie", async (req, res) => {
-  //   const movie = req.params.movie;
-  //   try {
-  //     const result = await moviedb.searchMovie({ query: movie });
-  //     movieList = result.results;
-  //     res.send(movieList);
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // });
+  app.get("/api/search/:movie", async (req, res) => {
+    const movie = req.params.movie;
+    try {
+      const result = await moviedb.searchMovie({ query: movie });
+      movieList = result.results;
+      res.send(movieList);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function(request, response) {
