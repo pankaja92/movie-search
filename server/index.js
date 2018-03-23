@@ -31,9 +31,15 @@ if (cluster.isMaster) {
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
   // Answer API requests.
-  app.get("/api", function(req, res) {
-    res.set("Content-Type", "application/json");
-    res.send('{"message":"Hello from the custom server!"}');
+  app.get("/api/movie:id", async (req, res) => {
+    const id = req.params.id;
+    try {
+      const result = await moviedb.movieInfo({ id: id });
+      movie = result;
+      res.send(movie);
+    } catch (err) {
+      console.log(err);
+    }
   });
 
   // app.get("/api/search/:movie", async (req, res) => {
@@ -46,18 +52,6 @@ if (cluster.isMaster) {
   //     console.error(err);
   //   }
   // });
-
-  app.get("/api/movie/:id", async (req, res) => {
-    const id = req.params.id;
-    try {
-      const result = await moviedb.movieInfo({ id: id });
-      movie = result;
-      res.send(movie);
-    } catch (err) {
-      console.log(err);
-    }
-  });
-
 
   // All remaining requests return the React app, so it can handle routing.
   app.get("*", function(request, response) {
