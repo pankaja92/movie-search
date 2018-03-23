@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import "./css/app.css";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 import moviedb from "./resources/moviedb.svg";
 

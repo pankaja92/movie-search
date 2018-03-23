@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Card, CardMedia } from "material-ui/Card";
 
-import "../css/card.css";
+// import "../css/card.css";
 
 const mainImg = "https://image.tmdb.org/t/p/w500";
 const backdropImg = "https://image.tmdb.org/t/p/original";

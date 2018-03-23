@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AutoComplete from "material-ui/AutoComplete";
-import "../css/search.css";
+// import "../css/search.css";
 
 class Search extends Component {
   constructor(props) {
