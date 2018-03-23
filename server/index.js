@@ -2,8 +2,9 @@ const express = require("express");
 const path = require("path");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
-const API_KEY = require("./config/keys").API_KEY;
 const MovieDb = require("moviedb-promise");
+
+const API_KEY = "1145a7f2df72886c5630f606bfa1ee64";
 const moviedb = new MovieDb(API_KEY);
 
 const PORT = process.env.PORT || 5000;
@@ -30,8 +31,15 @@ if (cluster.isMaster) {
   // Priority serve any static files.
   app.use(express.static(path.resolve(__dirname, "../react-ui/build")));
 
+   // Answer API requests.
+   app.get('/api', function (req, res) {
+    res.set('Content-Type', 'application/json');
+    res.send('{"message":"Hello from the custom server!"}');
+  });
+
   // Answer API requests.
-  app.get("/api/movie:id", async (req, res) => {
+  app.get("/api/movie/:id", async (req, res) => {
+    console.log('Get Movie method is called');
     const id = req.params.id;
     try {
       const result = await moviedb.movieInfo({ id: id });
@@ -43,7 +51,9 @@ if (cluster.isMaster) {
   });
 
   app.get("/api/search/:movie", async (req, res) => {
+    console.log('Search Movie method is called');
     const movie = req.params.movie;
+    console.log(movie);
     try {
       const result = await moviedb.searchMovie({ query: movie });
       movieList = result.results;
